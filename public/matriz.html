@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matriz - Central do Meio-Oeste</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="matriz-theme">
+    <h1>Matriz - Controle Regional do Meio Oeste Catarinense</h1>
+    <div id="status-conexao">Desconectado do Servidor</div>
+
+    <div class="grid-container">
+      <div class="section">
+        <h2>Radar de Solicitações ao Vivo</h2>
+        <div id="mapa-regiao" class="mapa-container"></div>
+      </div>
+
+      <div class="section">
+        <h2>Pedidos Ativos (Pendentes e Em Trânsito)</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Hora</th>
+              <th>Filial</th>
+              <th>Pedido</th>
+              <th>Prioridade</th>
+              <th>Status</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-pedidos-ativos"></tbody>
+        </table>
+      </div>
+
+      <div class="section section-historico">
+        <h2>Histórico de Entregas Concluídas</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Hora</th>
+              <th>Filial</th>
+              <th>Pedido</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-pedidos-historico"></tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>Gerenciamento Operacional</h2>
+        <div style="display: flex; gap: 20px">
+          <div style="flex: 1">
+            <h3>Repor Estoque Central</h3>
+            <div class="form-row">
+              <select id="compra-medicamento">
+                <option value="novo">+ Cadastrar Novo</option>
+              </select>
+              <input
+                type="text"
+                id="compra-nome"
+                placeholder="Nome"
+                style="display: none; width: 80px"
+              />
+              <input
+                type="number"
+                id="compra-qtd"
+                placeholder="Qtd"
+                min="1"
+                style="width: 50px"
+              />
+              <button class="btn-success" onclick="comprarEstoque()">
+                Adicionar
+              </button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Medicamento</th>
+                  <th>Estoque</th>
+                </tr>
+              </thead>
+              <tbody id="tabela-estoque"></tbody>
+            </table>
+          </div>
+
+          <div style="flex: 1">
+            <h3>Adicionar Filiais na Região</h3>
+            <div class="form-row">
+              <select id="select-nova-filial" style="flex: 1">
+                <option value="">Escolha uma cidade...</option>
+              </select>
+              <button class="btn-success" onclick="adicionarFilial()">
+                Adicionar
+              </button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Cidade</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tabela-filiais"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/matriz.js"></script>
+  </body>
+</html>

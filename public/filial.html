@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filial - Solicitação e Recebimento</title>
+
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="filial-theme">
+    <h1>Painel da Filial - Operações</h1>
+    <div id="status-conexao">Desconectado da Matriz</div>
+
+    <div class="container">
+      <div class="section">
+        <h2>Solicitar Reposição de Estoque</h2>
+        <form id="form-pedido" onsubmit="enviarPedido(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="select-filial">Selecione sua Filial:</label>
+              <select id="select-filial" required>
+                <option value="">Aguardando conexão...</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="select-prioridade">Prioridade do Pedido:</label>
+              <select id="select-prioridade" required>
+                <option value="Normal">Normal (Reposição de Rotina)</option>
+                <option value="Urgente">
+                  Urgente (Estoque Zerado / Paciente Aguardando)
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="select-medicamento">Medicamento Necessário:</label>
+              <select id="select-medicamento" required>
+                <option value="">Aguardando conexão...</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="flex: 0.5">
+              <label for="quantidade">Quantidade:</label>
+              <input type="number" id="quantidade" min="1" required />
+            </div>
+          </div>
+
+          <button type="submit">Enviar Pedido para Matriz</button>
+        </form>
+      </div>
+
+      <div class="section">
+        <h2>Acompanhamento e Recebimento</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Horário</th>
+              <th>Filial</th>
+              <th>Medicamento</th>
+              <th>Qtd.</th>
+              <th>Prioridade</th>
+              <th>Status</th>
+              <th>Ação de Recebimento</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-meus-pedidos"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="/js/filial.js"></script>
+  </body>
+</html>
